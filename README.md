@@ -1,4 +1,4 @@
-# indexgen
+# indexgen-cli
 
 A universal tool that automatically scans folders to generate `index.ts` files.
 
@@ -24,7 +24,7 @@ npx indexgencli --help
 ## Installation
 
 ```bash
-npm install indexgen
+npm install indexgen-cli
 ```
 
 ## Usage
