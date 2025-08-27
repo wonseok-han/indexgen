@@ -1,0 +1,90 @@
+{
+  "name": "indexgen",
+  "version": "1.0.0",
+  "author": "wonseok-han <oshan1112@gmail.com>",
+  "description": "A CLI tool that automatically generates index.ts files by scanning directory exports",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonseok-han/indexgen.git"
+  },
+  "keywords": [
+    "typescript",
+    "index",
+    "export",
+    "cli",
+    "generator",
+    "barrel",
+    "auto-export"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "indexgen": "./bin/indexgen.js"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run build && npm run test:run",
+    "prepack": "npm run build",
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "lint": "eslint . --fix --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "start": "node bin/indexgen.js",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "clean": "rm -rf dist"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "tsc --noEmit",
+      "eslint",
+      "vitest run"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": { 
+    "@eslint/js": "^9.30.0",
+    "@stylistic/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.35.1",
+    "@typescript-eslint/parser": "^8.35.1",
+    "@types/node": "^22.15.3",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-filename-rules": "^1.3.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.5.1",
+    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "globals": "^15.15.0",
+    "prettier": "^3.6.2",
+    "typescript": "5.8.2",
+    "typescript-eslint": "^8.21.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0"
+  }
+}

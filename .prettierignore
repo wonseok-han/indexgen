@@ -1,0 +1,14 @@
+# 의존성
+node_modules/
+
+# 빌드 결과물
+dist/
+
+# 로그 파일
+*.log
+*.log.*
+
+# 자동 생성된 파일
+coverage/
+report/
+*.tsbuildinfo
