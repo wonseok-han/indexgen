@@ -1,13 +1,13 @@
 {
   "name": "indexgen-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "wonseok-han <oshan1112@gmail.com>",
   "description": "A CLI tool that automatically generates index.ts files by scanning directory exports",
   "private": false,
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wonseok-han/indexgen.git"
+    "url": "https://github.com/wonseok-han/indexgen-cli.git"
   },
   "keywords": [
     "typescript",
@@ -45,7 +45,7 @@
     "dev": "vite build --watch",
     "lint": "eslint . --fix --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "start": "node bin/indexgen.js",
+    "start": "node bin/indexgen-cli.js",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
