@@ -383,7 +383,7 @@ export function generateIndex(
       processDirectoryRecursively(fullPath, targetConfig, actualFolderPath);
     } else {
       if (!config || !config.targets || config.targets.length === 0) {
-        error('❌ No indexgen configuration found in config file.');
+        error('❌ No indexgen-cli configuration found in config file.');
         return;
       }
 
@@ -502,7 +502,7 @@ export function startWatchMode(
     // 설정 파일의 targets 설정으로 감시 (config-based)
     const config = getConfig();
     if (!config || !config.targets || config.targets.length === 0) {
-      error('❌ No indexgen configuration found in config file.');
+      error('❌ No indexgen-cli configuration found in config file.');
       return;
     }
 

@@ -1,5 +1,5 @@
 {
-  "name": "indexgen",
+  "name": "indexgen-cli",
   "version": "1.0.0",
   "author": "wonseok-han <oshan1112@gmail.com>",
   "description": "A CLI tool that automatically generates index.ts files by scanning directory exports",
@@ -36,7 +36,7 @@
     }
   },
   "bin": {
-    "indexgen": "./bin/indexgen.js"
+    "indexgencli": "./bin/indexgen-cli.js"
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build && npm run test:run",

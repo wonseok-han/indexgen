@@ -120,11 +120,11 @@ export function findTargetConfig(
  */
 export function getConfig(): IndexGenConfig | undefined {
   const configFiles = [
-    '.indexgenrc',
-    '.indexgenrc.json',
-    'indexgen.config.js',
-    'indexgen.config.mjs',
-    'indexgen.config.ts',
+    '.indexgen-cli',
+    '.indexgen-cli.json',
+    'indexgen-cli.config.js',
+    'indexgen-cli.config.mjs',
+    'indexgen-cli.config.ts',
   ];
 
   for (const configFile of configFiles) {
@@ -514,10 +514,10 @@ export function isPathMatchingPattern(
  */
 export function printHelp(): void {
   console.log(`
-indexgen - A tool that automatically scans folders to generate index.ts files
+indexgen-cli - A tool that automatically scans folders to generate index.ts files
 
 Usage:
-  indexgen --paths=<path1,path2> [options]
+  indexgencli --paths=<path1,path2> [options]
 
 Required Options:
   --paths=<path1,path2>   Folder paths to process (multiple paths can be specified with commas)
@@ -538,9 +538,9 @@ Mode Options:
   -h, --help             Show this help message
 
 Examples:
-  indexgen --paths=src/components/**
-  indexgen --paths=src/components/**,src/**/ui/** --watch --exportStyle=named
-  indexgen --paths=src/components/** --log=false --debug=true
-  indexgen --watch
+  indexgencli --paths=src/components/**
+  indexgencli --paths=src/components/**,src/**/ui/** --watch --exportStyle=named
+  indexgencli --paths=src/components/** --log=false --debug=true
+  indexgencli --watch
 `);
 }

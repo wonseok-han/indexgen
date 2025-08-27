@@ -6,19 +6,19 @@ A universal tool that automatically scans folders to generate `index.ts` files.
 
 ```bash
 # Install package
-npm install indexgen
+npm install indexgen-cli
 
 # CLI usage (required: --paths option)
-npx indexgen --paths=src/components/**
+npx indexgencli --paths=src/components/**
 
 # CLI usage (watch mode)
-npx indexgen --paths=src/components/** --watch
+npx indexgencli --paths=src/components/** --watch
 
 # Config file based usage
-npx indexgen --watch
+npx indexgencli --watch
 
 # Show help
-npx indexgen --help
+npx indexgencli --help
 ```
 
 ## Installation
@@ -33,31 +33,31 @@ npm install indexgen
 
 ```bash
 # Basic usage (--paths is required)
-indexgen --paths=src/components/**
+indexgencli --paths=src/components/**
 
 # Multiple paths
-indexgen --paths=src/components/**,src/hooks/**
+indexgencli --paths=src/components/**,src/hooks/**
 
 # Watch mode (auto-update on file changes)
-indexgen --paths=src/components/** --watch
+indexgencli --paths=src/components/** --watch
 
 # Output filename
-indexgen --paths=src/components/** --outputFile=exports.ts
+indexgencli --paths=src/components/** --outputFile=exports.ts
 
 # File extensions
-indexgen --paths=src/components/** --fileExtensions=.tsx,.ts
+indexgencli --paths=src/components/** --fileExtensions=.tsx,.ts
 
 # Exclude file patterns
-indexgen --paths=src/components/** --excludes=*.d.ts,*.test.ts
+indexgencli --paths=src/components/** --excludes=*.d.ts,*.test.ts
 
 # Export style
-indexgen --paths=src/components/** --exportStyle=named
+indexgencli --paths=src/components/** --exportStyle=named
 
 # Naming convention
-indexgen --paths=src/components/** --namingConvention=PascalCase
+indexgencli --paths=src/components/** --namingConvention=PascalCase
 
 # Include extension
-indexgen --paths=src/components/** --fromWithExtension=false
+indexgencli --paths=src/components/** --fromWithExtension=false
 ```
 
 ### 2. Config File Based Usage
@@ -69,18 +69,18 @@ You can use it simply after creating a config file:
 indexgen --watch
 
 # Override config with CLI options
-indexgen --paths=src/components/** --watch --exportStyle=named
+indexgencli --paths=src/components/** --watch --exportStyle=named
 
 ### 3. CLI Options
 
 ```bash
 # Help
-indexgen --help
+indexgencli --help
 
-indexgen - A tool that automatically scans folders to generate index.ts files
+indexgen-cli - A tool that automatically scans folders to generate index.ts files
 
 Usage:
-  indexgen --paths=<path1,path2> [options]
+  indexgencli --paths=<path1,path2> [options]
 
 Required Options:
   --paths=<path1,path2>   Folder paths to process (multiple paths can be specified with commas)
@@ -101,10 +101,10 @@ Mode Options:
   -h, --help             Show this help message
 
 Examples:
-  indexgen --paths=src/components/**
-  indexgen --paths=src/components/**,src/**/ui/** --watch --exportStyle=named
-  indexgen --paths=src/components/** --log=false --debug=true
-  indexgen --watch
+  indexgencli --paths=src/components/**
+  indexgencli --paths=src/components/**,src/**/ui/** --watch --exportStyle=named
+  indexgencli --paths=src/components/** --log=false --debug=true
+  indexgencli --watch
 ```
 
 ## Configuration Options
@@ -113,9 +113,9 @@ Examples:
 
 Like ESLint or Prettier, it uses a separate configuration file:
 
-#### 1. JSON Config File (`.indexgenrc`)
+#### 1. JSON Config File (`.indexgen-cli`)
 
-Create a `.indexgenrc` file in the project root:
+Create a `.indexgen-cli` file in the project root:
 
 ```json
 {
@@ -149,7 +149,7 @@ Create a `.indexgenrc` file in the project root:
 }
 ```
 
-#### 2. JavaScript Config File (`indexgen.config.js`)
+#### 2. JavaScript Config File (`indexgen-cli.config.js`)
 
 You can use a JavaScript file for more complex configurations or dynamic settings:
 
@@ -172,11 +172,11 @@ module.exports = {
 
 Configuration files are searched in the following order:
 
-1. `.indexgenrc` (JSON)
-2. `.indexgenrc.json` (JSON)
-3. `indexgen.config.js` (CommonJS)
-4. `indexgen.config.mjs` (ES Module)
-5. `indexgen.config.ts` (TypeScript)
+1. `.indexgen-cli` (JSON)
+2. `.indexgen-cli.json` (JSON)
+3. `indexgen-cli.config.js` (CommonJS)
+4. `indexgen-cli.config.mjs` (ES Module)
+5. `indexgen-cli.config.ts` (TypeScript)
 
 ### Configuration Options Description
 
@@ -333,10 +333,10 @@ Create configuration files in the project root:
 
 ```bash
 # Create JSON config file
-cp .indexgenrc.example .indexgenrc
+touch .indexgen-cli
 
 # Or create JavaScript config file
-cp indexgen.config.js.example indexgen.config.js
+touch indexgen-cli.config.js
 ```
 
 ### Adding Scripts to package.json
@@ -344,8 +344,8 @@ cp indexgen.config.js.example indexgen.config.js
 ```json
 {
   "scripts": {
-    "generate:index": "indexgen --paths=src/components/**",
-    "dev": "indexgen --watch"
+    "generate:index": "indexgencli --paths=src/components/**",
+    "dev": "indexgencli --watch"
   }
 }
 ```
@@ -355,7 +355,7 @@ cp indexgen.config.js.example indexgen.config.js
 ```json
 {
   "scripts": {
-    "dev:watch": "indexgen --watch"
+    "dev:watch": "indexgencli --watch"
   }
 }
 ```
