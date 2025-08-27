@@ -479,10 +479,16 @@ export function isPathMatchingPattern(
   const escapeRegex = (s: string) => s.replace(/[.+^${}()|\[\]\\]/g, '\\$&');
   const replaceGlobs = (s: string) =>
     s
-      // '**' → '.*' (슬래시 포함 모든 문자)
-      .replace(/\*\*/g, '.*')
+      // 먼저 '**/' 패턴을 특별히 처리
+      .replace(/\*\*\//g, '__DOUBLESTAR_SLASH__')
+      // 남은 '**'를 처리
+      .replace(/\*\*/g, '__DOUBLESTAR__')
       // 남은 '*' → '[^/]*' (슬래시 제외 0+ 문자)
-      .replace(/\*/g, '[^/]*');
+      .replace(/\*/g, '[^/]*')
+      // '__DOUBLESTAR_SLASH__' → '(?:[^/]+/)*' (0개 이상의 경로 세그먼트 + 슬래시)
+      .replace(/__DOUBLESTAR_SLASH__/g, '(?:[^/]+/)*')
+      // '__DOUBLESTAR__' → '(?:[^/]+/)*' (0개 이상의 경로 세그먼트)
+      .replace(/__DOUBLESTAR__/g, '(?:[^/]+/)*');
 
   // glob 패턴을 정규식으로 변환
   const toRegex = (glob: string): RegExp => {

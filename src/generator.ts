@@ -402,7 +402,7 @@ export function generateIndex(
               }
             }
 
-            generateIndex(actualPath, cliOverrides);
+            generateIndex(watchPath, cliOverrides);
           });
         }
       });
@@ -556,7 +556,7 @@ export function startWatchMode(
             if (fileName === outputFileName) return;
             if (!shouldProcessEvent(filePath)) return;
             log(`📝 File added: ${fileName} (${watchPath})`);
-            generateIndex(actualWatchPath, overrides);
+            generateIndex(watchPath, overrides);
           });
 
           watcher.on('unlink', (filePath: string) => {
@@ -564,7 +564,7 @@ export function startWatchMode(
             if (fileName === outputFileName) return;
             if (!shouldProcessEvent(filePath)) return;
             log(`🗑️  File deleted: ${fileName} (${watchPath})`);
-            generateIndex(actualWatchPath, overrides);
+            generateIndex(watchPath, overrides);
           });
 
           watcher.on('change', (filePath: string) => {
@@ -572,7 +572,7 @@ export function startWatchMode(
             if (fileName === outputFileName) return;
             if (!shouldProcessEvent(filePath)) return;
             log(`📝 File changed: ${fileName} (${watchPath})`);
-            generateIndex(actualWatchPath, overrides);
+            generateIndex(watchPath, overrides);
           });
 
           watchers.push(watcher);

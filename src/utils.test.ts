@@ -273,6 +273,34 @@ describe('isPathMatchingPattern', () => {
         isPathMatchingPattern('entities/notification/lib', 'entities/*/lib')
       ).toBe(true);
     });
+
+    it('**/ 패턴이 제대로 작동해야 함', () => {
+      expect(isPathMatchingPattern('test/depth1/api', 'test/**/api')).toBe(
+        true
+      );
+      expect(
+        isPathMatchingPattern('test/depth1/api/**', 'test/**/api/**')
+      ).toBe(true);
+      expect(
+        isPathMatchingPattern('test/depth1/depth2/api', 'test/**/api/**')
+      ).toBe(true);
+      expect(
+        isPathMatchingPattern('test/depth1/depth2/api/**', 'test/**/api/**')
+      ).toBe(true);
+
+      expect(isPathMatchingPattern('other/depth1/api', 'test/**/api')).toBe(
+        false
+      );
+      expect(
+        isPathMatchingPattern('other/depth1/api/**', 'test/**/api/**')
+      ).toBe(false);
+      expect(
+        isPathMatchingPattern('other/depth1/depth2/api', 'test/**/api')
+      ).toBe(false);
+      expect(
+        isPathMatchingPattern('other/depth1/depth2/api/**', 'test/**/api/**')
+      ).toBe(false);
+    });
   });
 
   describe('경로 정규화', () => {
